@@ -25,11 +25,14 @@ public class BoardListController extends HttpServlet {
 		  BoardDAO dao = new BoardDAO();
           try { 
         	  
+        	  
+        	  
         	List<BoardVO> list = dao.boardList();
       	    // 요청한 클라이언트로 게시판 목록을 응답하기 (JSP)
         	// system.out.println(list.toString());
             // boardList.jsp: 요청을 의뢰하자!
-        	RequestDispatcher rd = request.getRequestDispatcher("view/boardList.jsp");
+        	request.setAttribute("list", list);
+        	RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/boardList.jsp");
         	rd.forward(request, response);
         	
 		} catch (Exception e) {
