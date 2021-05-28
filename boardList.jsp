@@ -3,6 +3,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
 <% 
  List<BoardVO> list = (List<BoardVO>)request.getAttribute("list"); //다운캐스팅
 %>
@@ -18,10 +19,10 @@
   <script type="text/javascript"> //자바 스크립트 
   function delFn(idx) { //함수만들기(삭제)    
    //alert("DEL"); //삭제를 눌렀을때 경고창
-    location.href = "/MVC01/delete.do?idx="+idx;
+    location.href = "<c:url value ='/delete.do'/>?idx="+idx; 
 }
   function registerFn(writer) {
-   location.href = "/MVC01/registerForm.do";
+   location.href = "<c:url value ='/registerForm.do'/>"; // 게시판 글쓰기
 } 
   </script>
 </head>
@@ -41,16 +42,17 @@
       <td>작성일</td>
       <td>삭제</td>
    </tr>
-   <% for(BoardVO vo: list){ %>
+<c:forEach var = "vo" items="${list}">
     <tr>
-       <td><%=vo.getIdx() %></td>
-       <td><a href="/MVC01/content.do?idx=<%=vo.getIdx() %>"><%=vo.getTitle() %></a></td>
-       <td><%=vo.getCount() %></td>
-       <td><%=vo.getWriter() %></td>
-       <td><%=vo.getIndate() %></td>
-       <td><input type = "button" onclick="delFn(<%=vo.getIdx() %>)" value="삭제" class="btn "></td>
+       <td>${vo.idx}</td>
+       <td><a href="<c:url value ='/content.do'/>?idx=${vo.idx}">${vo.title}</a></td>
+       <td>${vo.count}</td>
+       <td>${vo.writer}</td>
+       <td>${vo.indate}</td>
+       <td><input type = "button" onclick="delFn(${vo.idx})" value="삭제" class="btn "></td>
     </tr>
-    <%} %>
+    </c:forEach>
+ 
     <tr>
        <td colspan="6">
           <input type="button" value = "글쓰기" onclick="registerFn()" class="btn btn-primary btn-lg">
