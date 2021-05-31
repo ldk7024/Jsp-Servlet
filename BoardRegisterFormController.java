@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/registerForm.do")
-public class BoardRegisterFormController extends HttpServlet {
-    protected void service(HttpServletRequest request, HttpServletResponse response) 
+
+public class BoardRegisterFormController {
+    public void requestHandler(HttpServletRequest request, HttpServletResponse response) 
     		throws ServletException, IOException {
 		// 글쓰기 화면으로 이동
 	    RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/boardForm.html");

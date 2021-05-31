@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import kr.smhrd.model.BoardDAO;
 import kr.smhrd.model.BoardVO;
 
-@WebServlet("/content.do")
-public class BoardContentController extends HttpServlet {
-	protected void service(HttpServletRequest request, HttpServletResponse response) 
+
+public class BoardContentController {
+	public void requestHandler(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		int idx = Integer.parseInt(request.getParameter("idx"));
 		BoardDAO dao = new BoardDAO();

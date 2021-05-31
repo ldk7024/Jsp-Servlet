@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.smhrd.model.BoardDAO;
 
-@WebServlet("/delete.do")
-public class BoardDeleteController extends HttpServlet {
+
+public class BoardDeleteController{
      
-	protected void service(HttpServletRequest request, HttpServletResponse response) 
+	public void requestHandler(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 	int idx = Integer.parseInt(request.getParameter("idx"));
 	BoardDAO dao = new BoardDAO();
@@ -24,6 +24,8 @@ public class BoardDeleteController extends HttpServlet {
 		}else {
 			throw new ServletException("에러입니다."); // WAS (Tomcat): 에러 던지기
 		}
+		
+		
 	} catch (Exception e) {
 		e.printStackTrace();
 	}

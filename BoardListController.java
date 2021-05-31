@@ -15,10 +15,10 @@ import kr.smhrd.model.BoardDAO;
 import kr.smhrd.model.BoardVO;
 
 
-@WebServlet("/list.do") // 서블릿 맵핑
-public class BoardListController extends HttpServlet {
+
+public class BoardListController{
 	
-	protected void service(HttpServletRequest request, HttpServletResponse response) 
+	public String requestHandler(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
             
 		  // 1. model을 시켜먹어야한다.
@@ -32,13 +32,13 @@ public class BoardListController extends HttpServlet {
         	// system.out.println(list.toString());
             // boardList.jsp: 요청을 의뢰하자!
         	request.setAttribute("list", list);
-        	RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/boardList.jsp");
-        	rd.forward(request, response);
+        	// RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/boardList.jsp");
+        	// rd.forward(request, response);
         	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-           
+      	return "/WEB-INF/views/boardList.jsp";  // View 페이지의 경로를 리턴
 	
 	
 	}

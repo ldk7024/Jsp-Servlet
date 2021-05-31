@@ -11,11 +11,11 @@ import kr.smhrd.model.BoardDAO;
 import kr.smhrd.model.BoardVO;
 
 
-@WebServlet("/update.do")
-public class BoardUpdateController extends HttpServlet {
-     protected void service(HttpServletRequest request, HttpServletResponse response) 
+
+public class BoardUpdateController{
+     public void requestHandler(HttpServletRequest request, HttpServletResponse response) 
     		 throws ServletException, IOException {
-    		request.setCharacterEncoding("euc-kr");
+    		request.setCharacterEncoding("utf-8");
     		String title = request.getParameter("title");
     		String contents = request.getParameter("contents");
     		int idx = Integer.parseInt(request.getParameter("idx")); 
