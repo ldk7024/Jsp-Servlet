@@ -16,7 +16,7 @@ import kr.smhrd.model.BoardVO;
 
 
 
-public class BoardListController{
+public class BoardListController implements Controller{
 	
 	public String requestHandler(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
@@ -38,7 +38,7 @@ public class BoardListController{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-      	return "/WEB-INF/views/boardList.jsp";  // View 페이지의 경로를 리턴
+      	return "boardList";  // View 페이지의 경로를 리턴
 	
 	
 	}

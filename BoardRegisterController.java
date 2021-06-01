@@ -17,12 +17,11 @@ import kr.smhrd.model.BoardDAO;
 import kr.smhrd.model.BoardVO;
 
 
-public class BoardRegisterController {
+public class BoardRegisterController implements Controller {
 
-	public void requestHandler(HttpServletRequest request, HttpServletResponse response)
+	public String requestHandler(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// 0. 요청객체에 한글을 인코딩 처리
-		request.setCharacterEncoding("utf-8");
+		     
 
 		// 1. 파라메터 수집 (VO에 수집해야함)
 		String title = request.getParameter("title");
@@ -33,6 +32,7 @@ public class BoardRegisterController {
 		vo.setTitle(title);
 		vo.setContents(contents);
 		vo.setWriter(writer);
+		String view =null;
 		BoardDAO dao = new BoardDAO();
 
 		try {
@@ -40,7 +40,8 @@ public class BoardRegisterController {
 			if (cnt > 0) {
 				// 저장 성공후 -> 다시 리스트 페이지로 가기 (/list.do)
 				// redirect 기법 (서버에서 전화돌리기 -> 요청돌리기)
-				response.sendRedirect("list.do");
+				// response.sendRedirect("list.do");
+				view = "redirect:/list.do";
 			} else {
 				throw new ServletException("error"); // 예외처리
 			}
@@ -48,5 +49,6 @@ public class BoardRegisterController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return view;
 	}
 }

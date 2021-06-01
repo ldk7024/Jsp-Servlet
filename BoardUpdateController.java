@@ -12,10 +12,10 @@ import kr.smhrd.model.BoardVO;
 
 
 
-public class BoardUpdateController{
-     public void requestHandler(HttpServletRequest request, HttpServletResponse response) 
+public class BoardUpdateController implements Controller{
+     public String requestHandler(HttpServletRequest request, HttpServletResponse response) 
     		 throws ServletException, IOException {
-    		request.setCharacterEncoding("utf-8");
+    		
     		String title = request.getParameter("title");
     		String contents = request.getParameter("contents");
     		int idx = Integer.parseInt(request.getParameter("idx")); 
@@ -24,13 +24,15 @@ public class BoardUpdateController{
     		vo.setTitle(title);
     		vo.setContents(contents);
             vo.setIdx(idx);
+            String view = null;
     		BoardDAO dao = new BoardDAO();
 
     		try {
     			int cnt = dao.boardUpdate(vo);
     			if (cnt > 0) {
     				
-    				response.sendRedirect("list.do");
+    				// response.sendRedirect("list.do");
+    				view = "redirect:/list.do";
     			} else {
     				throw new ServletException("error"); 
     			}
@@ -38,7 +40,7 @@ public class BoardUpdateController{
     		} catch (Exception e) {
     			e.printStackTrace();
     		}
-     
+            return view; //list.do or null
      
      }
 
