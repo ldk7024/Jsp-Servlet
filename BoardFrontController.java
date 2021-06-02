@@ -39,19 +39,8 @@ public class BoardFrontController extends HttpServlet {
 		Controller controller = null;
 		String view = null;
 		// HandlerMapping (핸들러매핑)
-		if (command.equals("/list.do")) {
-			controller = new BoardListController();
-		} else if (command.equals("/register.do")) {
-			controller = new BoardRegisterController();
-		} else if (command.equals("/registerForm.do")) {
-			controller = new BoardRegisterFormController();
-		} else if (command.equals("/update.do")) {
-			controller = new BoardUpdateController();
-		} else if (command.equals("/content.do")) {
-			controller = new BoardContentController();
-		} else if (command.equals("/delete.do")) {
-			controller = new BoardDeleteController();
-		}
+	       HandlerMapping mappings = new HandlerMapping();
+	       controller = mappings.getController(command);
 		// --------------------------------------------------------------
 		view = controller.requestHandler(request, response);
 		if (view != null) {
@@ -60,7 +49,7 @@ public class BoardFrontController extends HttpServlet {
 			}
 
 			else {
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/"+view+".jsp"); // /WEB-INF/views/boardList.jsp
+				RequestDispatcher rd = request.getRequestDispatcher(viewResolver.makeurl(view)); // boardList
 				rd.forward(request, response);
 
 			}
