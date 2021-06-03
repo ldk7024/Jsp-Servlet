@@ -31,7 +31,18 @@
 <div class="container">
   <h2>Main화면</h2>
   <div class="panel panel-default">
-    <div class="panel-heading">로그인</div>
+    <div class="panel-heading"><form class="form-inline" action="/action_page.php">
+  <div class="form-group">
+    <label>ID:</label>
+    <input type="text" class="form-control" id="id" name ="id">
+  </div>
+  <div class="form-group">
+    <label for="pwd">PWD:</label>
+    <input type="password" class="form-control" id="pwd" name ="pwd">
+  </div> 
+  <button type="submit" class="btn btn-default">로그인</button>
+</form>
+</div>
     <div class="panel-body">
     <table class="table table-bordered table-hover">
    <tr>

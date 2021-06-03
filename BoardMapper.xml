@@ -3,8 +3,24 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.smhrd.mybatis.BoardMapper">
-
-
-    
+   
+   <select id="boardList" resultType="boardVO">
+  select idx,title,count,contents,writer,DATE_FORMAT(indate,'%Y-%m-%d') 
+  AS indate from tbl_board
+</select>
+    <insert id="boardInsert">
+        insert into tbl_board(title, contents, writer) 
+        values(#{title}, #{contents}, #{writer})
+    </insert>
+    <delete id ="boardDelete">
+        delete from tbl_board where idx =#{cnt}
+    </delete>
+    <select id="boardContent" resultType="boardVO">
+  select idx,title,count, contents,writer, DATE_FORMAT(indate,'%Y-%m-%d')
+  AS indate from tbl_board where idx=#{cnt}      
+     </select>
+    <update id="boardupdate">
+        update tbl_board set title = #{title}, contents = #{contents} where idx = #{idx}
+    </update>
     
 </mapper>

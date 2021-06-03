@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.smhrd.model.BoardDAO;
+import kr.smhrd.model.BoardDAOMybatis;
 import kr.smhrd.model.BoardVO;
 
 
@@ -18,7 +19,7 @@ public class BoardContentController implements Controller {
 	public String requestHandler(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		int idx = Integer.parseInt(request.getParameter("idx"));
-		BoardDAO dao = new BoardDAO();
+		BoardDAOMybatis dao = new BoardDAOMybatis();
 		try {
 			BoardVO vo = dao.boardContent(idx);
 			// 상세보기 페이지로 이동: boardContent.jsp

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.jasper.tagplugins.jstl.core.Catch;
 
 import kr.smhrd.model.BoardDAO;
+import kr.smhrd.model.BoardDAOMybatis;
 import kr.smhrd.model.BoardVO;
 
 
@@ -33,7 +34,7 @@ public class BoardRegisterController implements Controller {
 		vo.setContents(contents);
 		vo.setWriter(writer);
 		String view =null;
-		BoardDAO dao = new BoardDAO();
+		BoardDAOMybatis dao = new BoardDAOMybatis();
 
 		try {
 			int cnt = dao.boardInsert(vo);

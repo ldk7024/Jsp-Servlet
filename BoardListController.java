@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.smhrd.model.BoardDAO;
+import kr.smhrd.model.BoardDAOMybatis;
 import kr.smhrd.model.BoardVO;
 
 
@@ -22,7 +23,8 @@ public class BoardListController implements Controller{
 			throws ServletException, IOException {
             
 		  // 1. model을 시켜먹어야한다.
-		  BoardDAO dao = new BoardDAO();
+		//  BoardDAO dao = new BoardDAO();
+		BoardDAOMybatis dao = new BoardDAOMybatis();
           try { 
         	  
         	  
