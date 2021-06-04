@@ -10,6 +10,7 @@ import kr.smhrd.web.BoardListController;
 import kr.smhrd.web.BoardRegisterController;
 import kr.smhrd.web.BoardRegisterFormController;
 import kr.smhrd.web.BoardUpdateController;
+import kr.smhrd.web.CalcController;
 import kr.smhrd.web.Controller;
 
 public class HandlerMapping {
@@ -22,6 +23,7 @@ public class HandlerMapping {
 			mappings.put("/update.do", new BoardUpdateController());
 			mappings.put("/content.do", new BoardContentController());
 			mappings.put("/delete.do", new BoardDeleteController());
+			mappings.put("/calc.do", new CalcController());
 		}
 	 	public Controller getController(String command) {
 			return mappings.get(command);
