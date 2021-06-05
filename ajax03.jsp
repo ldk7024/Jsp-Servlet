@@ -16,16 +16,16 @@ $(document).ready(()=>{
 			url: "<c:url value='/calc.do'/>",
 			type: "get",
 			data: { "su": su },  // su=100
-			// dataType: "text"
+			dataType: "json",
+			
 			success: callBack,
 			error: function(){alert("error");}
 		}); 
 	});
-
-
 });
 function callBack(data){
-	alert(data);
+	// alert(data);
+	$("#msg").html(data);
 }
 </script>
 </head>
