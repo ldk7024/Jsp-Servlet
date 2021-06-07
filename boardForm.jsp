@@ -22,7 +22,7 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">게시판 글쓰기</div>
 			<div class="panel-body">
-				<form action="<c:url value ='/register.do'/>" method="post">
+				<form id="frm" method="post">
 					<div class="form-group">
 						<label>제목</label> <input type="text" class="form-control"
 							id="title" name="title">
@@ -37,10 +37,9 @@
 						<label>작성자</label> <input type="text" class="form-control"
 							id="writer" name="writer">
 					</div>
-					
+					<input type="button" class ="btn btn-primary" value ="글쓰기" onclick="writeFn()">
+					<input type = 'reset' value ='취소' class ='btn btn-warning' id="resetBtn">
 		
-					<button type="submit" class="btn btn-primary">글쓰기</button>
-					<button type="reset" class="btn btn-warning">취소</button>
 				</form>
 			</div>
 			<div class="panel-footer">빅데이터 4차(이대교)</div>

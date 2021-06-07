@@ -32,7 +32,7 @@
   <div class="form-group">
     <label class="control-label col-sm-2" >번호:</label>
     <div class="col-sm-10">
-    <input type="text" class="form-control" name="idx" value="${vo.idx}" readonly="readonly">
+    <input type="text" class="form-control" name="idx" id="idx" readonly="readonly">
     
     </div>
     </div>
@@ -62,6 +62,7 @@
       <button type="button" class="btn btn-success btn-sm" onclick ="goList()">목록</button>
     </div>
   </div>
+
 
 </form>
     
