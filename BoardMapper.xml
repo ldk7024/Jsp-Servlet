@@ -22,5 +22,8 @@
     <update id="boardupdate">
         update tbl_board set title = #{title}, contents = #{contents} where idx = #{idx}
     </update>
+    <select id="loginMember" resultType="userVO">
+        select * from tbl_user where user_id=#{user_id} and password=#{password}
+    </select>
     
 </mapper>

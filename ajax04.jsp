@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -8,17 +8,19 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 $(document).ready(()=>{
-   $("#btn").click(()=>{
-       list();
-   });
+	list();
 }); 
 function list() {     //list를 호출하기위해 함수에 담아줌
-      $("#bf").css("display", "none");
+	  $("#bc").css("display", "none"); 
+	  $("#bf").css("display", "none");
       $.ajax({
          url : "ajaxlist.do", //서버로요청 -> AjaxBoardlistController---↓
          type : "get",       //           
@@ -39,7 +41,7 @@ function callback(data) {
    view+="<td>조회수</td>";
    view+="<td>작성자</td>";
    view+="<td>작성일</td>";
-   view+="<td><button>삭제</button></td>";
+   view+="<td>삭제</td>";
    
    view+="</tr>";
    $.each(data, (index, obj)=>{ 
@@ -49,13 +51,13 @@ function callback(data) {
       view+="<td>"+obj.count+"</td>";
       view+="<td>"+obj.writer+"</td>";
       view+="<td>"+obj.indate+"</td>";
-      view+="<td><button class='btn btn-primary' onclick='delbtn("+obj.idx+")'>삭제</button></td>";
+      view+="<td><button class='btn btn-warning btn-sm' onclick='delbtn("+obj.idx+")' disabled='disabled'>삭제</button></td>";
       view+="</tr>";   
       
    });   
     view+="<tr>";
     view+="<td colspan='6'>";
-    view+="<input type='button' value='글쓰기' class='btn btn-info' onclick='btnWrite()'/>"; 
+    view+="<input type='button' value='글쓰기' class='btn btn-info btn-sm' onclick='btnWrite()'/>"; 
     view+="</td>";
     view+="</tr>";
    view+="</table>";
@@ -66,7 +68,6 @@ function contentFn(index) {
 $.ajax({
      url : "ajaxcontent.do",
      type : "get",
-     
      data : {"idx" : idx},
      datatype : "json",
      success : callContent, //콜백
@@ -75,13 +76,17 @@ $.ajax({
    
 }
 function callContent(data) {  //위에 callContent callback 함수 만들기
-   $("#bc").css("display", "block"); 
+   $("#bc").css("display", 
+		   "block"); 
    $("#bf").css("display", "none");
    var idx = data.idx;
    var title = data.title;
    var contents = data.contents;
    var writer = data.writer;
-   $("#idx").val(idx);
+   $("#cidx").val(idx);
+   $("#ctitle").val(title);
+   $("#ccontents").val(contents);
+   $("#cwriter").val(writer);
    
 }
 function btnWrite() {
@@ -113,17 +118,66 @@ function writeFn() {
       error : function () {alert("error");}               
    });
 }
+function closeFn() {
+	   $("#bc").css("display","none")
+	   $("#bf").css("display", "none");
+}
+function updateFn(){
+	var formdata=$("#ufrm").serialize();
+	   //alert(formdata);
+	   $.ajax({
+	      url : "ajaxupdate.do",
+	      type : "post",
+	      data :formdata ,
+	      success : list,
+	      error : function () {alert("error");}   
+	   });
+}
+function loginFn() {
+	var user_id =$("#user_id").val();
+	var password =$("#password").val();
+	$.ajax({
+		url : "ajaxlogin.do",
+		type : "post",
+		data : {"user_id":user_id,"password":password},
+		success : function (data) {
+			alert(data);
+		},
+		error : function () {alert("error");}  
+	});
+}
 </script>
+
 </head>
 <body>
-   
-   <input type="button" value="게시판리스트 가져오기(Ajax)" id="btn" class="btn btn-warning">
-   <div id="msg">여기에 게시판 리스트를 출력하시오</div>
-   <div style="display: none" id="bf">
-   <c:import url="boardForm.jsp"/>    <%-- boardForm 임포트--%>>
-    </div>
-    <div style="display: none;" id="bc">
-    <c:import url="boardContent.jsp"/>
-    </div>
+	<div class="container">
+		<h3>MVC_(FrontController+POJO+HandlerMapping+ViewResolver+MyBatis+Ajax)게시판</h3>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<form id="loginfrm" class="form-inline" method="post">
+					<div class="form-group">
+						<label>ID:</label> <input type="text" class="form-control" id="user_id"
+							name="user_id">
+					</div>
+					<div class="form-group">
+						<label>PWD:</label> <input type="password" class="form-control"
+							id="password" name="password">
+					</div>
+					<button type="button" class="btn btn-info" onclick="loginFn()">로그인</button>
+				</form>
+			</div>
+			<div class="panel-body">
+				<div id="msg"></div>
+				<div style="display: none" id="bf">
+					<c:import url="boardForm.jsp" />
+				</div>
+				<div style="display: none;" id="bc">
+					<c:import url="boardContent.jsp" />
+				</div>
+				<div class="panel-footer">빅데이터 분석 서비스 개발자 과정 (이대교)</div>
+
+			</div>
+		</div>
+	</div>
 </body>
 </html>

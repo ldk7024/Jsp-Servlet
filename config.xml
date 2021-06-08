@@ -6,6 +6,7 @@
 	<properties resource="kr/smhrd/mybatis/db.properties" />
 	<typeAliases>
 	    <typeAlias type="kr.smhrd.model.BoardVO" alias="boardVO"/>
+	    <typeAlias type="kr.smhrd.model.UserVO" alias="userVO"/>
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">

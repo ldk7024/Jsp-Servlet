@@ -16,23 +16,18 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <script type="text/javascript">
-  function goList() {
-	  location.href ="<c:url value='/list.do'/>";
-	}
-  </script>
+
 </head>
 <body>
-<div class="container">
-  <h2>게시판 상세보기</h2>
+
   <div class="panel panel-default">
-    <div class="panel-heading">로그인 화면</div>
+    <div class="panel-heading">게시판 상세보기</div>
     <div class ="panel-body">
     <form class="form-horizontal" action="<c:url value ='/update.do'/>" method ="post">
   <div class="form-group">
     <label class="control-label col-sm-2" >번호:</label>
     <div class="col-sm-10">
-    <input type="text" class="form-control" name="idx" id="idx" readonly="readonly">
+    <input type="text" class="form-control" name="idx" value="${vo.idx}" readonly="readonly">
     
     </div>
     </div>
@@ -63,11 +58,9 @@
     </div>
   </div>
 
-
 </form>
     
     </div>
-    <div class="panel-footer">빅데이터 분석서비스 개발자과정 4차 (이대교)</div>
   </div>
 </div>
 
