@@ -8,6 +8,9 @@ import kr.smhrd.web.AjaxBoardContentController;
 import kr.smhrd.web.AjaxBoardDeleteController;
 import kr.smhrd.web.AjaxBoardListController;
 import kr.smhrd.web.AjaxBoardRegisterController;
+import kr.smhrd.web.AjaxBoardUpdateController;
+import kr.smhrd.web.AjaxLoginController;
+import kr.smhrd.web.AjaxLogoutController;
 import kr.smhrd.web.BoardContentController;
 import kr.smhrd.web.BoardDeleteController;
 import kr.smhrd.web.BoardListController;
@@ -27,11 +30,14 @@ public class HandlerMapping {
 			mappings.put("/ajaxregister.do", new AjaxBoardRegisterController());
 			mappings.put("/registerForm.do", new BoardRegisterFormController());
 			mappings.put("/update.do", new BoardUpdateController());
+			mappings.put("/ajaxupdate.do", new AjaxBoardUpdateController());
 			mappings.put("/content.do", new BoardContentController());
 			mappings.put("/ajaxcontent.do", new AjaxBoardContentController());
 			mappings.put("/delete.do", new BoardDeleteController());
 			mappings.put("/ajaxdelete.do", new AjaxBoardDeleteController());
 			mappings.put("/calc.do", new CalcController());
+			mappings.put("/ajaxlogin.do", new AjaxLoginController());
+			mappings.put("/ajaxlogout.do", new AjaxLogoutController());
 			
 		}
 	 	public Controller getController(String command) {
